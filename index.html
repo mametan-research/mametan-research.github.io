@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>まめ探｜気になれば、それがテーマ。</title>
+
+  <meta name="description" content="気になったことを、楽しく調べて、とことん深掘り。ジャンルにとらわれず、いろんな「なんで？」を探究します。">
+
+  <link rel="canonical" href="https://mametan-research.github.io/">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      color: #2d3329;
+      background: #f8faf5;
+      line-height: 1.8;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e3e8de;
+    }
+
+    .header-inner {
+      max-width: 960px;
+      margin: auto;
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4f7d35;
+    }
+
+    nav a {
+      color: #4d5548;
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.95rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: auto;
+      padding: 0 22px;
+    }
+
+    .hero {
+      padding: 90px 0 75px;
+    }
+
+    .eyebrow {
+      color: #6b8f4e;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      margin: 10px 0;
+      line-height: 1.15;
+      color: #355a26;
+    }
+
+    .catch {
+      font-size: clamp(1.4rem, 4vw, 2.2rem);
+      font-weight: 700;
+      margin: 18px 0;
+    }
+
+    .intro {
+      max-width: 680px;
+      font-size: 1.08rem;
+      color: #555d50;
+    }
+
+    section {
+      padding: 55px 0;
+      border-top: 1px solid #e1e6dc;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: #355a26;
+      margin-top: 0;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e0e6db;
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #4f7d35;
+    }
+
+    .message {
+      background: #eef5e8;
+      border-radius: 20px;
+      padding: 35px;
+      margin: 25px 0;
+    }
+
+    .message strong {
+      font-size: 1.3rem;
+      color: #355a26;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 35px 22px;
+      text-align: center;
+      background: #ffffff;
+      border-top: 1px solid #e3e8de;
+      color: #687063;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 650px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 65px 0 55px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">まめ探</div>
+
+      <nav>
+        <a href="/">ホーム</a>
+        <a href="/about/">まめ探とは</a>
+        <a href="/articles/">探究記事</a>
+        <a href="/kenji-ono/">プロフィール</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="eyebrow">MAMETAN RESEARCH</div>
+
+      <h1>まめ探</h1>
+
+      <div class="catch">
+        気になれば、それがテーマ。
+      </div>
+
+      <p class="intro">
+        気になったことを、楽しく調べて、とことん深掘り。
+        ジャンルにとらわれず、いろんな「なんで？」を探究します。
+      </p>
+    </section>
+
+    <section>
+      <h2>好奇心に、ジャンルなし。</h2>
+
+      <p>
+        AI、SEO、時事、防災、暮らし、グルメ、商品レビュー、
+        都市伝説、オカルト、スピリチュアル。
+      </p>
+
+      <p>
+        世の中には、気になることがたくさんあります。
+        まめ探は、ジャンルを決めてから調べるのではなく、
+        「これ、なんだろう？」から探究を始めます。
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <h3>調べる</h3>
+          <p>
+            気になったことを、そのままにしない。
+            まずは情報を集めます。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>深掘りする</h3>
+          <p>
+            表面だけでは終わらせず、
+            もう一歩先まで追いかけます。
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>楽しむ</h3>
+          <p>
+            難しいことも、できるだけ分かりやすく。
+            探究する過程そのものを楽しみます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>まめ探のスタンス</h2>
+
+      <div class="message">
+        <strong>本気で遊び、本気で調べる。</strong>
+
+        <p>
+          正解を押し付けるのではなく、
+          読者と一緒に「なんで？」を楽しみながら、
+          気になることの先を探っていきます。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 まめ探 / Mametan Research</p>
+  </footer>
+
+</body>
+</html>
