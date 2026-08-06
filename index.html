@@ -1,1 +1,1059 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>まめ探｜問いから始まる知的探究メディア</title>
+
+  <meta
+    name="description"
+    content="まめ探（MAMETAN）は、気になったことを丁寧に調べ、さまざまな視点から探究する知的メディアです。"
+  >
+
+  <meta name="theme-color" content="#f8f6ef">
+
+  <style>
+    :root {
+      --background: #f8f6ef;
+      --surface: #fffefa;
+      --text: #252820;
+      --subtext: #6e7169;
+      --green: #526f49;
+      --green-light: #edf1e8;
+      --line: #ddddd5;
+      --shadow: 0 12px 32px rgba(45, 50, 39, 0.08);
+      --radius: 18px;
+      --max-width: 1120px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--background);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Hiragino Sans",
+        "Yu Gothic",
+        "YuGothic",
+        "Meiryo",
+        sans-serif;
+      line-height: 1.8;
+      letter-spacing: 0.03em;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    button {
+      color: inherit;
+      font: inherit;
+    }
+
+    .container {
+      width: min(
+        var(--max-width),
+        calc(100% - 48px)
+      );
+      margin-inline: auto;
+    }
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .site-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      width: 100%;
+      padding-top: max(
+        30px,
+        env(safe-area-inset-top)
+      );
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-block;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: inline-block;
+      padding-left: 18px;
+    }
+
+    .brand-mark::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 12px;
+      height: 18px;
+      border: 2px solid var(--green);
+      border-right: 0;
+      border-bottom: 0;
+      border-radius: 100% 0 0 0;
+      transform: rotate(-24deg);
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 8px;
+      width: 8px;
+      height: 13px;
+      border: 2px solid var(--green);
+      border-left: 0;
+      border-bottom: 0;
+      border-radius: 0 100% 0 0;
+      transform: rotate(22deg);
+    }
+
+    .brand-name {
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: clamp(35px, 5vw, 50px);
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: 0.13em;
+    }
+
+    .brand-english {
+      margin-top: 8px;
+      padding-left: 18px;
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: 0.38em;
+    }
+
+    .brand-description {
+      display: block;
+      margin-top: 17px;
+      padding-left: 18px;
+      color: var(--green);
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: 13px;
+      line-height: 1.6;
+      letter-spacing: 0.09em;
+    }
+
+    .brand-whisper {
+      display: block;
+      margin-top: 5px;
+      padding-left: 18px;
+      color: var(--subtext);
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 0.08em;
+    }
+
+    /* =========================
+       三本線ボタン
+    ========================= */
+
+    .menu-button {
+      position: relative;
+      z-index: 45;
+      width: 48px;
+      height: 48px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-button span {
+      position: absolute;
+      left: 7px;
+      width: 34px;
+      height: 1px;
+      background: var(--text);
+      transition:
+        top 0.28s ease,
+        transform 0.28s ease,
+        opacity 0.2s ease;
+    }
+
+    .menu-button span:nth-child(1) {
+      top: 14px;
+    }
+
+    .menu-button span:nth-child(2) {
+      top: 24px;
+    }
+
+    .menu-button span:nth-child(3) {
+      top: 34px;
+    }
+
+    .menu-button[aria-expanded="true"]
+    span:nth-child(1) {
+      top: 24px;
+      transform: rotate(45deg);
+    }
+
+    .menu-button[aria-expanded="true"]
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-button[aria-expanded="true"]
+    span:nth-child(3) {
+      top: 24px;
+      transform: rotate(-45deg);
+    }
+
+    /* =========================
+       開閉メニュー
+    ========================= */
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 35;
+      visibility: hidden;
+      background: rgba(35, 39, 32, 0.18);
+      opacity: 0;
+      transition:
+        visibility 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    .menu-overlay.is-visible {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 40;
+      width: min(390px, 88vw);
+      height: 100%;
+      padding:
+        max(125px, env(safe-area-inset-top))
+        42px
+        42px;
+      background: var(--surface);
+      border-left: 1px solid var(--line);
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+    }
+
+    .side-menu.is-open {
+      transform: translateX(0);
+    }
+
+    .menu-list {
+      list-style: none;
+    }
+
+    .menu-list li + li {
+      margin-top: 28px;
+    }
+
+    .menu-list a {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 5px;
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: 17px;
+      letter-spacing: 0.08em;
+    }
+
+    .menu-list a::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .menu-list a:hover::after,
+    .menu-list a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .menu-copyright {
+      position: absolute;
+      right: 42px;
+      bottom: max(
+        38px,
+        env(safe-area-inset-bottom)
+      );
+      left: 42px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--subtext);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+    }
+
+    /* =========================
+       ファーストビュー
+    ========================= */
+
+    .hero {
+      min-height: 72svh;
+      display: grid;
+      place-items: center;
+      padding:
+        185px
+        24px
+        80px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      width: min(760px, 100%);
+    }
+
+    .hero-space {
+      min-height: 220px;
+    }
+
+    .sprout-divider {
+      position: relative;
+      width: 36px;
+      height: 32px;
+      margin: 0 auto;
+    }
+
+    .sprout-divider::before,
+    .sprout-divider::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      width: 14px;
+      height: 20px;
+      border: 2px solid var(--green);
+      border-bottom: 0;
+    }
+
+    .sprout-divider::before {
+      left: 3px;
+      border-right: 0;
+      border-radius: 100% 0 0 0;
+      transform: rotate(-30deg);
+    }
+
+    .sprout-divider::after {
+      right: 3px;
+      border-left: 0;
+      border-radius: 0 100% 0 0;
+      transform: rotate(30deg);
+    }
+
+    .sprout-stem {
+      width: 1px;
+      height: 25px;
+      margin: -5px auto 0;
+      background: var(--green);
+    }
+        /* =========================
+       最新記事
+    ========================= */
+
+    .latest {
+      padding: 92px 0 110px;
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      margin-bottom: 52px;
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: clamp(27px, 4vw, 38px);
+      font-weight: 500;
+      letter-spacing: 0.14em;
+    }
+
+    .section-heading::before,
+    .section-heading::after {
+      content: "";
+      width: min(175px, 18vw);
+      height: 1px;
+      background: var(--green);
+      opacity: 0.65;
+    }
+
+    .article-placeholder {
+      width: min(850px, 100%);
+      margin: 0 auto;
+      padding: 64px 24px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .placeholder-sprout {
+      position: relative;
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 20px;
+    }
+
+    .placeholder-sprout::before,
+    .placeholder-sprout::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      width: 11px;
+      height: 16px;
+      border: 2px solid var(--green);
+      border-bottom: 0;
+    }
+
+    .placeholder-sprout::before {
+      left: 2px;
+      border-right: 0;
+      border-radius: 100% 0 0 0;
+      transform: rotate(-30deg);
+    }
+
+    .placeholder-sprout::after {
+      right: 2px;
+      border-left: 0;
+      border-radius: 0 100% 0 0;
+      transform: rotate(30deg);
+    }
+
+    .placeholder-title {
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: clamp(19px, 2.5vw, 24px);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+
+    .placeholder-text {
+      margin-top: 13px;
+      color: var(--subtext);
+      font-size: 13px;
+      letter-spacing: 0.07em;
+    }
+
+    /*
+      記事を公開した後に使用するカード用CSS。
+      現時点では、記事カード自体は表示しません。
+    */
+
+    .article-grid {
+      display: grid;
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+      gap: 30px;
+    }
+
+    .article-card {
+      overflow: hidden;
+      background: #ffffff;
+      border: 1px solid rgba(82, 111, 73, 0.12);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .article-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 18px 40px
+        rgba(45, 50, 39, 0.12);
+    }
+
+    .article-image {
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: var(--green-light);
+    }
+
+    .article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .article-card:hover
+    .article-image img {
+      transform: scale(1.025);
+    }
+
+    .article-body {
+      padding: 22px 23px 24px;
+    }
+
+    .article-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 12px;
+      color: var(--subtext);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    .article-category {
+      color: var(--green);
+      font-weight: 600;
+    }
+
+    .article-title {
+      font-family:
+        "Yu Mincho",
+        "YuMincho",
+        "Hiragino Mincho ProN",
+        serif;
+      font-size: 19px;
+      font-weight: 600;
+      line-height: 1.65;
+      letter-spacing: 0.06em;
+    }
+
+    .article-summary {
+      margin-top: 12px;
+      color: var(--subtext);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .all-articles {
+      display: flex;
+      justify-content: center;
+      margin-top: 54px;
+    }
+
+    .all-articles a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 190px;
+      min-height: 48px;
+      padding: 10px 28px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      color: var(--green);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .all-articles a:hover,
+    .all-articles a:focus-visible {
+      background: var(--green);
+      color: #ffffff;
+    }
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .site-footer {
+      padding:
+        44px
+        24px
+        calc(
+          44px
+          + env(safe-area-inset-bottom)
+        );
+      background: var(--background);
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 0;
+      margin-bottom: 24px;
+      list-style: none;
+    }
+
+    .footer-links li {
+      display: flex;
+      align-items: center;
+    }
+
+    .footer-links li:not(:last-child)::after {
+      content: "";
+      width: 1px;
+      height: 13px;
+      margin: 0 25px;
+      background: var(--line);
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+    }
+
+    .copyright {
+      color: var(--subtext);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+
+    /* =========================
+       スマートフォン
+    ========================= */
+
+    @media (max-width: 760px) {
+      .container {
+        width: calc(100% - 34px);
+      }
+
+      .site-header {
+        padding-top: max(
+          24px,
+          env(safe-area-inset-top)
+        );
+      }
+
+      .brand-name {
+        font-size: 31px;
+      }
+
+      .brand-english {
+        margin-top: 7px;
+        font-size: 10px;
+      }
+
+      .brand-description {
+        margin-top: 14px;
+        font-size: 12px;
+      }
+
+      .brand-whisper {
+        font-size: 9px;
+      }
+
+      .menu-button {
+        width: 44px;
+        height: 44px;
+      }
+
+      .menu-button span {
+        left: 7px;
+        width: 30px;
+      }
+
+      .menu-button span:nth-child(1) {
+        top: 12px;
+      }
+
+      .menu-button span:nth-child(2) {
+        top: 21px;
+      }
+
+      .menu-button span:nth-child(3) {
+        top: 30px;
+      }
+
+      .menu-button[aria-expanded="true"]
+      span:nth-child(1),
+      .menu-button[aria-expanded="true"]
+      span:nth-child(3) {
+        top: 21px;
+      }
+
+      .side-menu {
+        padding:
+          max(
+            115px,
+            env(safe-area-inset-top)
+          )
+          34px
+          38px;
+      }
+
+      .menu-copyright {
+        right: 34px;
+        left: 34px;
+      }
+
+      .hero {
+        min-height: 67svh;
+        padding:
+          165px
+          20px
+          64px;
+      }
+
+      .hero-space {
+        min-height: 180px;
+      }
+
+      .latest {
+        padding: 76px 0 84px;
+      }
+
+      .section-heading {
+        gap: 15px;
+        margin-bottom: 38px;
+        font-size: 26px;
+      }
+
+      .section-heading::before,
+      .section-heading::after {
+        width: 46px;
+      }
+
+      .article-placeholder {
+        padding: 52px 18px;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 13px;
+      }
+
+      .footer-links
+      li:not(:last-child)::after {
+        display: none;
+      }
+    }
+
+    @media (
+      min-width: 761px
+    ) and (
+      max-width: 980px
+    ) {
+      .article-grid {
+        grid-template-columns:
+          repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (
+      prefers-reduced-motion: reduce
+    ) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration:
+          0.01ms !important;
+        animation-iteration-count:
+          1 !important;
+        transition-duration:
+          0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./" aria-label="まめ探 ホーム">
+        <div class="brand-mark">
+          <div class="brand-name">まめ探</div>
+        </div>
+
+        <div class="brand-english">MAMETAN</div>
+
+        <span class="brand-description">
+          問いから始まる知的探究メディア
+        </span>
+
+        <span class="brand-whisper">
+          気になれば、それがテーマ。
+        </span>
+      </a>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="メニューを開く"
+        aria-controls="sideMenu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div
+    class="menu-overlay"
+    id="menuOverlay"
+  ></div>
+
+  <nav
+    class="side-menu"
+    id="sideMenu"
+    aria-label="メインメニュー"
+    aria-hidden="true"
+  >
+    <ul class="menu-list">
+      <li>
+        <a href="./">ホーム</a>
+      </li>
+
+      <li>
+        <a href="#latest">最新記事</a>
+      </li>
+
+      <li>
+        <a href="about.html">まめ探について</a>
+      </li>
+
+      <li>
+        <a href="operator.html">運営者情報</a>
+      </li>
+    </ul>
+
+    <p class="menu-copyright">
+      © 2026 MAMETAN
+    </p>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div
+          class="hero-space"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="sprout-divider"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="sprout-stem"
+          aria-hidden="true"
+        ></div>
+      </div>
+    </section>
+
+    <section
+      class="latest"
+      id="latest"
+    >
+      <div class="container">
+        <h1 class="section-heading">
+          最新記事
+        </h1>
+
+        <div class="article-placeholder">
+          <div
+            class="placeholder-sprout"
+            aria-hidden="true"
+          ></div>
+
+          <p class="placeholder-title">
+            最初の探究を準備しています。
+          </p>
+
+          <p class="placeholder-text">
+            記事のテーマと内容は、これから一緒に決めていきます。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <ul class="footer-links">
+      <li>
+        <a href="about.html">
+          まめ探について
+        </a>
+      </li>
+
+      <li>
+        <a href="operator.html">
+          運営者情報
+        </a>
+      </li>
+    </ul>
+
+    <p class="copyright">
+      © 2026 MAMETAN
+    </p>
+  </footer>
+    <script>
+    const menuButton =
+      document.getElementById("menuButton");
+
+    const sideMenu =
+      document.getElementById("sideMenu");
+
+    const menuOverlay =
+      document.getElementById("menuOverlay");
+
+    const menuLinks =
+      sideMenu.querySelectorAll("a");
+
+    function openMenu() {
+      document.body.classList.add("menu-open");
+
+      sideMenu.classList.add("is-open");
+
+      menuOverlay.classList.add("is-visible");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを閉じる"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "false"
+      );
+    }
+
+    function closeMenu() {
+      document.body.classList.remove("menu-open");
+
+      sideMenu.classList.remove("is-open");
+
+      menuOverlay.classList.remove("is-visible");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.setAttribute(
+        "aria-label",
+        "メニューを開く"
+      );
+
+      sideMenu.setAttribute(
+        "aria-hidden",
+        "true"
+      );
+    }
+
+    function toggleMenu() {
+      const isOpen =
+        menuButton.getAttribute(
+          "aria-expanded"
+        ) === "true";
+
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    menuButton.addEventListener(
+      "click",
+      toggleMenu
+    );
+
+    menuOverlay.addEventListener(
+      "click",
+      closeMenu
+    );
+
+    menuLinks.forEach(function(link) {
+      link.addEventListener(
+        "click",
+        closeMenu
+      );
+    });
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+        if (event.key === "Escape") {
+          closeMenu();
+        }
+      }
+    );
+  </script>
+</body>
+</html>
