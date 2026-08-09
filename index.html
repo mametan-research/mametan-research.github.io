@@ -30,11 +30,36 @@ margin-top:8px;
 }
 .menu{
 position:absolute;
-top:60px;
+top:58px;
 right:34px;
+font-family:sans-serif;
+}
+
+.menu summary{
+list-style:none;
 font-size:28px;
-text-decoration:none;
-color:#111;
+cursor:pointer;
+}
+
+.menu summary::-webkit-details-marker{
+display:none;
+}
+
+.menu-list{
+position:absolute;
+top:42px;
+right:0;
+min-width:140px;
+padding:14px 18px;
+background:#f8f6f0;
+border:1px solid #d8d5cc;
+}
+
+.menu-list a{
+display:block;
+font-size:13px;
+line-height:2.2;
+white-space:nowrap;
 }
 .copy{
 margin-top:22vh;
@@ -60,7 +85,13 @@ color:#777;
 <h1>まめ探</h1>
 <div class="logo">MAMETAN</div>
 
-<a class="menu" href="articles.html">☰</a>
+<details class="menu">
+<summary>☰</summary>
+<div class="menu-list">
+<a href="articles.html">記事一覧</a>
+<a href="kenji-ono.html">プロフィール</a>
+</div>
+</details>
 
 <div class="copy">
 <p>
@@ -72,9 +103,6 @@ color:#777;
 その奥にあるものを、<br>
 もう少し探ってみる。
 </p>
-</div>
-<div style="margin-bottom:18px;font-size:13px;">
-<a href="kenji-ono.html">小野兼司</a>
 </div>
 <footer>© 2026 MAMETAN</footer>
 
